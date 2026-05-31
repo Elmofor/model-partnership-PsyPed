@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Модель социального партнерства школы с родителями обучающихся</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      padding: 20px;
+      color: #2d3748;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .header p {
+      font-size: 16px;
+      opacity: 0.95;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .content {
+      padding: 30px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: #4a5568;
+      margin-bottom: 25px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid #667eea;
+    }
+
+    .section-title .icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      font-size: 20px;
+    }
+
+    /* Цель */
+    .goal-box {
+      background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+      border-left: 5px solid #38b2ac;
+      padding: 25px;
+      border-radius: 12px;
+      font-size: 17px;
+      font-weight: 500;
+      box-shadow: 0 5px 15px rgba(56, 178, 172, 0.15);
+    }
+
+    /* Принципы */
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .principle-card {
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .principle-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+    }
+
+    .principle-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+      border-color: #667eea;
+    }
+
+    .principle-number {
+      width: 35px;
+      height: 35px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin: 0 auto 15px;
+    }
+
+    .principle-title {
+      font-weight: 600;
+      font-size: 16px;
+      color: #2d3748;
+      margin-bottom: 8px;
+    }
+
+    .principle-desc {
+      font-size: 14px;
+      color: #718096;
+    }
+
+    /* Субъекты */
+    .subjects-container {
+      position: relative;
+      padding: 20px 0;
+    }
+
+    .center-circle {
+      width: 200px;
+      height: 200px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      margin: 0 auto 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      font-weight: 700;
+      font-size: 16px;
+      box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+      position: relative;
+      z-index: 2;
+    }
+
+    .subjects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-top: -80px;
+      padding-top: 80px;
+    }
+
+    .subject-card {
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px 15px;
+      text-align: center;
+      position: relative;
+    }
+
+    .subject-card .icon {
+      width: 50px;
+      height: 50px;
+      background: #f7fafc;
+      border: 2px solid #cbd5e0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: -45px auto 15px;
+      font-size: 22px;
+      background: white;
+    }
+
+    .subject-card h4 {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 8px;
+      color: #4a5568;
+    }
+
+    .subject-card p {
+      font-size: 13px;
+      color: #718096;
+    }
+
+    /* Направления */
+    .directions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .direction-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .direction-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .direction-header {
+      padding: 20px;
+      color: white;
+      font-weight: 700;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+    }
+
+    .direction-header .icon {
+      margin-right: 12px;
+      font-size: 22px;
+    }
+
+    .dir-1 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+    .dir-2 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+    .dir-3 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+    .dir-4 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+    .dir-5 { background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
+
+    .direction-body {
+      padding: 20px;
+      background: #f8fafc;
+    }
+
+    .direction-body ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .direction-body li {
+      padding: 8px 0;
+      padding-left: 25px;
+      position: relative;
+      font-size: 14px;
+      color: #4a5568;
+    }
+
+    .direction-body li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #48bb78;
+      font-weight: 700;
+    }
+
+    /* Формы и механизмы */
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .forms-list, .mechanisms-list {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 25px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .forms-list h4, .mechanisms-list h4 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #4a5568;
+      display: flex;
+      align-items: center;
+    }
+
+    .forms-list h4 .icon, .mechanisms-list h4 .icon {
+      margin-right: 10px;
+      font-size: 22px;
+    }
+
+    .forms-list ul, .mechanisms-list ul {
+      list-style: none;
+    }
+
+    .forms-list li, .mechanisms-list li {
+      padding: 12px 0;
+      padding-left: 30px;
+      position: relative;
+      border-bottom: 1px dashed #cbd5e0;
+      font-size: 15px;
+    }
+
+    .forms-list li:last-child, .mechanisms-list li:last-child {
+      border-bottom: none;
+    }
+
+    .forms-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+    }
+
+    .mechanisms-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+    }
+
+    /* Этапы */
+    .stages {
+      position: relative;
+      padding: 20px 0;
+    }
+
+    .stage-line {
+      position: absolute;
+      top: 50%;
+      left: 5%;
+      right: 5%;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      border-radius: 2px;
+      z-index: 1;
+    }
+
+    .stages-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    @media (max-width: 968px) {
+      .stages-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .stage-line {
+        display: none;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .stages-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .stage-card {
+      background: white;
+      border: 3px solid #667eea;
+      border-radius: 15px;
+      padding: 25px 15px;
+      text-align: center;
+      position: relative;
+    }
+
+    .stage-number {
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      margin: -45px auto 15px;
+      border: 3px solid white;
+    }
+
+    .stage-card h4 {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #4a5568;
+    }
+
+    .stage-card p {
+      font-size: 14px;
+      color: #718096;
+    }
+
+    /* Результаты */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .result-card {
+      background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+      border: 2px solid #9ae6b4;
+      border-radius: 12px;
+      padding: 25px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .result-card .icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .result-card h4 {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #2f855a;
+    }
+
+    .result-card p {
+      font-size: 14px;
+      color: #276749;
+    }
+
+    /* Footer */
+    .footer {
+      background: #f7fafc;
+      padding: 25px;
+      text-align: center;
+      border-top: 2px solid #e2e8f0;
+      color: #718096;
+      font-size: 14px;
+    }
+
+    /* Анимации */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section {
+      animation: fadeIn 0.6s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Заголовок -->
+    <div class="header">
+      <h1>Модель социального партнерства школы с родителями обучающихся</h1>
+      <p>Система психолого-педагогического взаимодействия, направленная на создание единого образовательного пространства для успешного развития и благополучия детей</p>
+    </div>
+
+    <div class="content">
+      <!-- Цель -->
+      <div class="section">
+        <div class="section-title">
+          <div class="icon"></div>
+          Цель модели
+        </div>
+        <div class="goal-box">
+          <strong>Главная цель:</strong> формирование эффективного социального партнерства школы и семьи на основе психолого-педагогического сопровождения, обеспечивающего гармоничное развитие личности обучающегося, его образовательные успехи и психологическое благополучие.
+        </div>
+      </div>
+
+      <!-- Принципы -->
+      <div class="section">
+        <div class="section-title">
+          <div class="icon"></div>
+          Базовые принципы взаимодействия
+        </div>
+        <div class="principles-grid">
+          <div class="principle-card">
+            <div class="principle-number">1</div>
+            <div class="principle-title">Доверие и уважение</div>
+            <div class="principle-desc">Взаимное признание ценности мнения всех сторон</div>
+          </div>
+          <div class="principle-card">
+            <div class="principle-number">2</div>
+            <div class="principle-title">Равноправное партнерство</div>
+            <div class="principle-desc">Совместное планирование и принятие решений</div>
+          </div>
+          <div class="principle-card">
+            <div class="principle-number">3</div>
+            <div class="principle-title">Индивидуальный подход</div>
+            <div class="principle-desc">Учет особенностей каждой семьи и ребенка</div>
+          </div>
+          <div class="principle-card">
+            <div class="principle-number">4</div>
+            <div class="principle-title">Конфиденциальность</div>
+            <div class="principle-desc">Защита персональных данных и личной информации</div>
+          </div>
+          <div class="principle-card">
+            <div class="principle-number">5</div>
+            <div class="principle-title">Добровольность</div>
+            <div class="principle-desc">Открытость к участию без принуждения</div>
+          </div>
+          <div class="principle-card">
+            <div class="principle-number">6</div>
+            <div class="principle-title">Обратная связь</div>
+            <div class="principle-desc">Регулярный обмен информацией и оценка результатов</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Субъекты -->
+      <div class="section">
+        <div class="section-title">
+          <div class="icon"></div>
+          Субъекты партнерства
+        </div>
+        <div class="subjects-container">
+          <div class="center-circle">
+            Единое<br>партнерское<br>пространство
+          </div>
+          <div class="subjects-grid">
+            <div class="subject-card">
+              <div class="icon"></div>
+              <h4>Администрация школы</h4>
+              <p>Координация, ресурсное обеспечение, нормативная поддержка</p>
+            </div>
+            <div class="subject-card">
+              <div class="icon"></div>
+              <h4>Педагогический коллектив</h4>
+              <p>Образовательный процесс, воспитательная работа</p>
+            </div>
+            <div class="subject-card">
+              <div class="icon"></div>
+              <h4>Школьный психолог</h4>
+              <p>Диагностика, консультирование, коррекционная работа</p>
+            </div>
+            <div class="subject-card">
+              <div class="icon"></div>
+              <h4>Социальный педагог</h4>
+              <p>Социальная поддержка, работа с семьей</p>
+            </div>
+            <div class="subject-card">
+              <div class="icon"></div>
+              <h4>Родители (законные представители)</h4>
+              <p>Участие в воспитании, поддержка ребенка</p>
+            </div>
+            <div class="subject-card">
+              <div class="icon"></div>
+              <h4>Обучающиеся</h4>
+              <p>Активные участники процесса развития</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Направления ПП поддержки -->
+      <div class="section">
+        <div class="section-title">
+          <div class="icon"></div>
+          Направления психолого-педагогической поддержки
+        </div>
+        <div class="directions-grid">
+          <div class="direction-card">
+            <div class="direction-header dir-1">
+              <span class="icon"></span>
+              Диагностическое
+            </div>
+            <div class="direction-body">
+              <ul>
+                <li>Изучение индивидуальных особенностей детей</li>
+                <li>Выявление семейных ресурсов и рисков</li>
+                <li>Мониторинг психологического климата</li>
+                <li>Определение запроса на поддержку</li>
+              </ul>
+            </div>
+          </div>
+          <div class="direction-card">
+            <div class="direction-header dir-2">
+              <span class="icon">💬</span>
+              Консультативное
+            </div>
+            <div class="direction-body">
+              <ul>
+                <li>Индивидуальные консультации родителей</li>
+                <li>Семейное консультирование</li>
+                <li>Консультации педагогов по работе с семьей</li>
+                <li>Экстренная психологическая помощь</li>
+              </ul>
+            </div>
+          </div>
+          <div class="direction-card">
+            <div class="direction-header dir-3">
+              <span class="icon"></span>
+              Просветительское
+            </div>
+            <div class="direction-body">
+              <ul>
+                <li>Родительские собрания и лектории</li>
+                <li>Тренинги и семинары для родителей</li>
+                <li>Информационные материалы и памятки</li>
+                <li>Круглые столы по актуальным темам</li>
+              </ul>
+            </div>
+          </div>
+          <div class="direction-card">
+            <div class="direction-header dir-4">
+              <span class="icon"></span>
+              Коррекционно-развивающее
+            </div>
+            <div class="direction-body">
+              <ul>
+                <li>Развивающие занятия для детей</li>
+                <li>Работа с родителями по закреплению навыков</li>
+                <li>Совместные семейные занятия</li>
+                <li>Индивидуальные коррекционные программы</li>
+              </ul>
+            </div>
+          </div>
+          <div class="direction-card">
+            <div class="direction-header dir-5">
+              <span class="icon"></span>
+              Профилактическое
+            </div>
+            <div class="direction-body">
+              <ul>
+                <li>Профилактика школьной дезадаптации</li>
+                <li>Предупреждение семейного неблагополучия</li>
+                <li>Формирование навыков эффективного общения</li>
+                <li>Сохранение психологического здоровья</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Формы и механизмы -->
+      <div class="section">
+        <div class="section-title">
+          <div class="icon"></div>
+          Формы и механизмы взаимодействия
+        </div>
+        <div class="two-column">
+          <div class="forms-list">
+            <h4><span class="icon"></span>Основные формы работы</h4>
+            <ul>
+              <li>Родительские собрания (классные и общешкольные)</li>
+              <li>Индивидуальные и групповые консультации</li>
+              <li>Тренинги, мастер-классы, семинары</li>
+              <li>Дни открытых дверей и семейные праздники</li>
+              <li>Онлайн-взаимодействие (чаты, видеоконференции, почта)</li>
+              <li>Совместные проекты и волонтерские акции</li>
+              <li>Школьный родительский комитет</li>
+              <li>Психолого-педагогические консилиумы с участием родителей</li>
+            </ul>
+          </div>
+          <div class="mechanisms-list">
+            <h4><span class="icon"></span>Механизмы реализации</h4>
+            <ul>
+              <li>Ежегодное планирование совместных мероприятий</li>
+              <li>Согласование программ поддержки</li>
+              <li>Регулярный мониторинг эффективности</li>
+              <li>Заключение договоров о сотрудничестве</li>
+              <li>Создание рабочих групп и советов</li>
+              <li>Каналы оперативной обратной связи</li>
+              <li>Анализ запросов и удовлетворенности</li>
+              <li>Корректировка модели на основе данных</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Этапы реализации -->
+      <div class="section">
+        <div class="section-title">
+          <div class="icon"></div>
+          Этапы реализации модели
+        </div>
+        <div class="stages">
+          <div class="stage-line"></div>
+          <div class="stages-grid">
+            <div class="stage-card">
+              <div class="stage-number">1</div>
+              <h4>Диагностический</h4>
+              <p>Изучение потребностей, ресурсов и проблем всех участников партнерства</p>
+            </div>
+            <div class="stage-card">
+              <div class="stage-number">2</div>
+              <h4>Проектировочный</h4>
+              <p>Разработка плана взаимодействия, программ и форм поддержки</p>
+            </div>
+            <div class="stage-card">
+              <div class="stage-number">3</div>
+              <h4>Практический</h4>
+              <p>Внедрение мероприятий, консультаций и совместной деятельности</p>
+            </div>
+            <div class="stage-card">
+              <div class="stage-number">4</div>
+              <h4>Оценочно-аналитический</h4>
+              <p>Анализ результатов, сбор обратной связи и оптимизация модели</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ожидаемые результаты -->
+      <div class="section">
+        <div class="section-title">
+          <div class="icon"></div>
+          Ожидаемые результаты
+        </div>
+        <div class="results-grid">
+          <div class="result-card">
+            <span class="icon"></span>
+            <h4>Для семей</h4>
+            <p>Повышение психолого-педагогической компетентности родителей, улучшение детско-родительских отношений</p>
+          </div>
+          <div class="result-card">
+            <span class="icon"></span>
+            <h4>Для обучающихся</h4>
+            <p>Снижение тревожности, повышение учебной мотивации, развитие социальных навыков и эмоциональной устойчивости</p>
+          </div>
+          <div class="result-card">
+            <span class="icon"></span>
+            <h4>Для педагогов</h4>
+            <p>Эффективные стратегии взаимодействия с семьей, снижение профессионального выгорания</p>
+          </div>
+          <div class="result-card">
+            <span class="icon"></span>
+            <h4>Для школы</h4>
+            <p>Формирование позитивного образовательного климата, укрепление доверия, снижение рисков неблагополучия</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p><strong>Модель социального партнерства</strong> • Психолого-педагогическая поддержка семьи и школы</p>
+      <p style="margin-top: 5px; font-size: 13px;">Реализуется на основе принципов сотрудничества, уважения и взаимной ответственности</p>
+    </div>
+  </div>
+</body>
+</html>
